@@ -40,14 +40,40 @@
                         <div class="order-select">
                             <h6>Sort by</h6>
                             <p>Showing 1&ndash;12 of 25 results</p>
-                            <form method="get">
-                                <select>
-                                    <option selected="selected" value="order">Default sorting</option>
-                                    <option value="popularity">Sort by popularity</option>
-                                    <option value="rating">Sort by average rating</option>
-                                    <option value="date">Sort by newness</option>
-                                    <option value="price">Sort by price: low to high</option>
-                                    <option value="price-desc">Sort by price: high to low</option>
+                            <form id="form1" method="get">
+                                <select name="order" onchange="$('#form1').submit();">
+                                    @if (Context.Request.Query["order"] == "date-asc")
+                                    {
+                                        <option value="date-asc" selected="selected">Tarihe Göre Artan</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="date-asc">Tarihe Göre Artan</option>
+                                    }
+                                    @if (Context.Request.Query["order"] == "date-desc")
+                                    {
+                                        <option value="date-desc" selected="selected">Tarihe Göre Azalan</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="date-desc">Tarihe Göre Azalan</option>
+                                    }
+                                    @if (Context.Request.Query["order"] == "price-asc")
+                                    {
+                                        <option value="price-asc" selected="selected">Fiyata Göre Artan</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="price-asc">Fiyata Göre Artan</option>
+                                    }
+                                    @if (Context.Request.Query["order"] == "price-desc")
+                                    {
+                                        <option value="price-desc" selected="selected">Fiyata Göre Azalan</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="price-desc">Fiyata Göre Azalan</option>
+                                    }
                                 </select>
                             </form>
                         </div>
@@ -474,7 +500,7 @@
                         @foreach (var item in (IEnumerable<Category>)ViewBag.ProductCategories)
                         {
                             <li>
-                                <a href="@Url.Action("Index","Products",new { categoryId = item.Id })">@item.Name</a> <span class="count">(@item.Products.Count)</span>
+                                <a href="@Url.Action("Index","Products",new { categoryId = item.Id })">@item.Name</a> <span class="count">(@item.PublishedProducts.Count)</span>
                             </li>
                         }
                     </ul>

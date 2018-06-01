@@ -65,7 +65,7 @@ namespace SimpleCommerce.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Photo,Price,Stock,CategoryId")] Product product, IFormFile File)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Photo,Price,Stock,CategoryId,IsFeatured,IsPublished")] Product product, IFormFile File)
         {
             if (ModelState.IsValid)
             {
@@ -120,7 +120,7 @@ namespace SimpleCommerce.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Photo,Price,Stock,CategoryId")] Product product, IFormFile File)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Photo,Price,Stock,CategoryId,IsFeatured,IsPublished")] Product product, IFormFile File)
         {
             if (id != product.Id)
             {

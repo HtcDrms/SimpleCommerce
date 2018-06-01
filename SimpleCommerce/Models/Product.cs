@@ -34,5 +34,8 @@ namespace SimpleCommerce.Models
         [Display(Name = "Kategori")]
         public Category Category { get; set; }
         public DateTime? CreateDate { get; set; }
+
+        public bool IsFeatured { get; set; }
+        public bool IsPublished { get; set; }
     }
 }
