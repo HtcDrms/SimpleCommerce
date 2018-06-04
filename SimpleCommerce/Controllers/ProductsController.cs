@@ -45,5 +45,15 @@ namespace SimpleCommerce.Controllers
             return View(model);
        
         }
+
+        public IActionResult Details(int id)
+        {
+            var product = _context.Products.Include(i=>i.Category).Where(p => p.IsPublished == true && p.Id == id).FirstOrDefault();
+            if (product==null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
     }
 }
