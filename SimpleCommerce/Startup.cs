@@ -38,6 +38,7 @@ namespace SimpleCommerce
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+            services.AddSession();
 
             // sayfalama konfigürasyonu
             services.AddPaging(options => {
@@ -65,7 +66,7 @@ namespace SimpleCommerce
             app.UseStaticFiles();
 
             app.UseAuthentication();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
