@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SimpleCommerce.Data;
@@ -40,7 +41,19 @@ namespace SimpleCommerce.Controllers
                 cartItem.Quantity += 1;
             }
             _context.SaveChanges();
+            HttpContext.Session.SetString("CartId", cart.Id.ToString());
             return Json(true);
+        }
+
+        public IActionResult Cart()
+        {
+            string owner = User.Identity.Name;
+            if (string.IsNullOrEmpty(owner))
+            {
+                owner = HttpContext.Session.Id;
+            }
+            Cart cart = GetCart(owner);
+            return View(cart);
         }
 
         

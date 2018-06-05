@@ -37,5 +37,7 @@ namespace SimpleCommerce.Models
 
         public bool IsFeatured { get; set; }
         public bool IsPublished { get; set; }
+
+        public virtual ICollection<CartItem> CartItems { get; set; }
     }
 }
