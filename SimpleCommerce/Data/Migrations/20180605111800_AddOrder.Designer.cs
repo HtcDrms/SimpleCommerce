@@ -6,15 +6,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SimpleCommerce.Data;
-using SimpleCommerce.Models;
 using System;
 
 namespace SimpleCommerce.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180605111800_AddOrder")]
+    partial class AddOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,94 +229,6 @@ namespace SimpleCommerce.Data.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("SimpleCommerce.Models.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("BillingAddress");
-
-                    b.Property<string>("BillingCity");
-
-                    b.Property<string>("BillingCompanyName");
-
-                    b.Property<string>("BillingCountry");
-
-                    b.Property<string>("BillingCounty");
-
-                    b.Property<string>("BillingDistrict");
-
-                    b.Property<string>("BillingEmail");
-
-                    b.Property<string>("BillingFirstName");
-
-                    b.Property<string>("BillingIdentityNumber");
-
-                    b.Property<string>("BillingLastName");
-
-                    b.Property<string>("BillingPhone");
-
-                    b.Property<string>("BillingStreet");
-
-                    b.Property<string>("BillingZipCode");
-
-                    b.Property<string>("ShippingAddress");
-
-                    b.Property<string>("ShippingCity");
-
-                    b.Property<string>("ShippingCompanyName");
-
-                    b.Property<string>("ShippingCountry");
-
-                    b.Property<string>("ShippingCounty");
-
-                    b.Property<string>("ShippingDistrict");
-
-                    b.Property<string>("ShippingEmail");
-
-                    b.Property<string>("ShippingFirstName");
-
-                    b.Property<string>("ShippingIdentityNumber");
-
-                    b.Property<string>("ShippingLastName");
-
-                    b.Property<string>("ShippingPhone");
-
-                    b.Property<string>("ShippingStreet");
-
-                    b.Property<string>("ShippingZipCode");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("SimpleCommerce.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CartId");
-
-                    b.Property<DateTime>("CreateDate");
-
-                    b.Property<int>("CustomerId");
-
-                    b.Property<int>("OrderStatus");
-
-                    b.Property<string>("Owner");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("SimpleCommerce.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -348,26 +260,6 @@ namespace SimpleCommerce.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("SimpleCommerce.Models.Region", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int?>("ParentRegionId");
-
-                    b.Property<int>("RegionType");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentRegionId");
-
-                    b.ToTable("Regions");
                 });
 
             modelBuilder.Entity("SimpleCommerce.Models.Slide", b =>
@@ -452,32 +344,12 @@ namespace SimpleCommerce.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SimpleCommerce.Models.Order", b =>
-                {
-                    b.HasOne("SimpleCommerce.Models.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SimpleCommerce.Models.Customer", "Customer")
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("SimpleCommerce.Models.Product", b =>
                 {
                     b.HasOne("SimpleCommerce.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SimpleCommerce.Models.Region", b =>
-                {
-                    b.HasOne("SimpleCommerce.Models.Region", "ParentRegion")
-                        .WithMany()
-                        .HasForeignKey("ParentRegionId");
                 });
 #pragma warning restore 612, 618
         }
