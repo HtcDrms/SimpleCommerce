@@ -20,6 +20,24 @@ namespace SimpleCommerce.Controllers
             return View();
         }
 
+        public IActionResult RemoveFromCart(int cartItemId)
+        {
+            string owner = User.Identity.Name;
+            if (string.IsNullOrEmpty(owner))
+            {
+                owner = HttpContext.Session.Id;
+            }
+            Cart cart = GetCart(owner);
+
+            var cartItemToRemove = cart.CartItems.Where(ci => ci.Id == cartItemId).FirstOrDefault();
+
+            if (cartItemToRemove != null) { 
+                cart.CartItems.Remove(cartItemToRemove);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Cart");
+        }
+
         public IActionResult AddToCart(int productId)
         {
             string owner = User.Identity.Name;
