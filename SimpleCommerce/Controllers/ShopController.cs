@@ -60,7 +60,7 @@ namespace SimpleCommerce.Controllers
             }
             _context.SaveChanges();
             HttpContext.Session.SetString("CartId", cart.Id.ToString());
-            return Json(true);
+            return Json(cart.CartItems.Sum(ci => ci.Quantity));
         }
 
         public IActionResult Cart()

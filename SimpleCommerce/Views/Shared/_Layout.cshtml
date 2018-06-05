@@ -333,11 +333,8 @@
     <script>
         function AddToCart(productId) {
             $.post("/Shop/AddToCart", { productId: productId }, function (result) {
-                if (result == true) {
-                    alert("Ürün sepete eklenmiştir");
-                } else {
-                    alert("Beklenmeyen bir hata oluştu, lütfen tekrar deneyin");
-                }
+                $(".shopping-cart-items").html(result);
+                alert("Sepete ürün eklendi");
             });
         }
     </script>
