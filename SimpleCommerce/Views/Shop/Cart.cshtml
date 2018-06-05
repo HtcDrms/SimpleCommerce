@@ -125,7 +125,7 @@
                                     </td>
 
                                     <td class="cart-product-name  text-right">
-                                        <span class="amount">₺@(Model.TotalPrice*0.18M)</span>
+                                        <span class="amount">₺@string.Format("{0:#,###.##}", Model.TotalPrice*0.18M)</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -134,7 +134,7 @@
                                     </td>
 
                                     <td class="cart-product-name text-right">
-                                        <span class="amount color lead"><strong>₺@(Model.TotalPrice*1.18M)</strong></span>
+                                        <span class="amount color lead"><strong>₺@string.Format("{0:#,###.##}",Model.TotalPrice*1.18M)</strong></span>
                                     </td>
                                 </tr>
                             </tbody>
