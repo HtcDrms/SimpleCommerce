@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,16 @@ namespace SimpleCommerce.Models
         [Display(Name = "Fatura Soyadı")]
         [StringLength(200)]
         public string BillingLastName { get; set; }
+
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return BillingFirstName + " " + BillingLastName;
+            }
+        }
+
         [Display(Name = "Fatura Kimlik No")]
         [StringLength(200)]
         public string BillingIdentityNumber { get; set; }
