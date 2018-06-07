@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <label class="sr-only">Ülke</label>
-                            <select asp-for="Customer.BillingCountry" class="fullwidth" asp-items="ViewBag.Countries">
+                            <select asp-for="Customer.BillingCountry" class="fullwidth" asp-items="ViewBag.BillingCountries" onchange="BillingCountryChange(this)">
                                 <option value="">Ülke seçiniz</option>
                             </select>
                         </div>
@@ -106,7 +106,7 @@
                                         <div class="row">
                                             <div class="col-md-12 form-group">
                                                 <label class="sr-only">Ülke</label>
-                                                <select asp-for="Customer.ShippingCountry" class="fullwidth" asp-items="ViewBag.Countries">
+                                                <select asp-for="Customer.ShippingCountry" class="fullwidth" asp-items="ViewBag.ShippingCountries">
                                                     <option value="">Ülke seçiniz</option>
                                                 </select>
                                             </div>
@@ -357,3 +357,10 @@
     </div>
 </section>
 <!-- END: DELIVERY INFO -->
+@section scripts {
+    <script>
+        function BillingCountryChange(elm) {
+            alert($(elm).val());
+        }
+    </script>
+}

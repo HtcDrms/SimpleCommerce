@@ -85,7 +85,8 @@ namespace SimpleCommerce.Controllers
                 return RedirectToAction("Login", "Account");
             }
             var order = GetOrder(owner);
-            ViewBag.Countries = new SelectList(_context.Regions.Where(r => r.RegionType == RegionType.Country).OrderBy(o => o.Name).ToList(), "Code", "Name");
+            ViewBag.BillingCountries = new SelectList(_context.Regions.Where(r => r.RegionType == RegionType.Country).OrderBy(o => o.Name).ToList(), "Code", "Name");
+            ViewBag.ShippingCountries = new SelectList(_context.Regions.Where(r => r.RegionType == RegionType.Country).OrderBy(o => o.Name).ToList(), "Code", "Name");
             return View(order);
         }
         
